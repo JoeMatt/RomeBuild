@@ -6,9 +6,9 @@ struct UploadCommand {
     func upload(platforms: String?, additionalArguments: [String]) {
         
         if !Cartfile().exists() {
-            Carthage(["update", "--no-build", "--no-checkout"]+filterAdditionalArgs(task: "update", args: additionalArguments))
+            Carthage(["update", "--no-build"])
         } else {
-            Carthage(["bootstrap", "--no-build", "--no-checkout"]+filterAdditionalArgs(task: "bootstrap", args: additionalArguments))
+            Carthage(["checkout"])
         }
         
         var dependenciesToBuild = [String:String]()
@@ -27,27 +27,30 @@ struct UploadCommand {
         if dependenciesToUploadArray.count > 0 {
             for dependency in dependenciesToUploadArray {
                 let dependencyPath = "\(Environment().currentDirectory()!)/Carthage/Checkouts/\(dependency)"
+                let carthageBuildPath = "Carthage/Checkouts/\(dependency)"
                 
-                print("Checkout project dependency \(dependency)")
-                Carthage(["checkout", dependency, "--no-use-binaries"]+filterAdditionalArgs(task: "checkout", args: additionalArguments))
-                
-                print("Checkout inner dependencies for \(dependency)")
-                Carthage(["bootstrap", "--no-build", "--project-directory", dependencyPath]+filterAdditionalArgs(task: "bootstrap", args: additionalArguments))
-                
-                print("Building \(dependency) for archive")
-                
-                var buildArchive = ["build", "--no-skip-current", "--project-directory", dependencyPath]
-                
-                if let buildPlatforms = platforms {
-                    buildArchive.append("--platform")
-                    buildArchive.append(buildPlatforms)
+                print("Trying to pre archive \(dependency)")
+                var status = Carthage(["archive", "--project-directory", carthageBuildPath])
+                if status.status != 0 {
+                    print("Couldn't find framework\nCheckout project dependency \(dependency)")
+                    Carthage(["checkout", dependency])
+                    
+                    print("Checkout inner dependencies for \(dependency)")
+                    Carthage(["bootstrap", "--no-build", "--project-directory", dependencyPath])
+                    
+                    print("Building \(dependency) for archive")
+                    
+                    var buildArchive = ["build", "--no-skip-current", "--project-directory", dependencyPath]
+                    
+                    if let buildPlatforms = platforms {
+                        buildArchive.append("--platform")
+                        buildArchive.append(buildPlatforms)
+                    }
+                    
+                    Carthage(buildArchive)
+                    status = Carthage(["archive", "--output", Environment().currentDirectory()!], path: dependencyPath)
                 }
-                
-                buildArchive.append(contentsOf: filterAdditionalArgs(task: "build", args: additionalArguments))
-                
-                Carthage(buildArchive)
-                let status = Carthage(["archive", "--output", Environment().currentDirectory()!]+filterAdditionalArgs(task: "archive", args: additionalArguments), path: dependencyPath)
-                Helpers().uploadAsset(name: dependency, revision: dependenciesToBuild[dependency]!, filePath: getFrameworkPath(taskStatus: status))
+                Helpers().uploadAsset(dependency, revision: dependenciesToBuild[dependency]!, filePath: getFrameworkPath(status))
             }
         }
         
