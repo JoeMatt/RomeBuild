@@ -61,8 +61,8 @@
 		A14315AC1CDBFEED00C279FD /* HelpCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpCommand.swift; sourceTree = "<group>"; };
 		A14315AE1CDC014B00C279FD /* BuildCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildCommand.swift; sourceTree = "<group>"; };
 		A14315B51CDE19A100C279FD /* Regex.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Regex.framework; path = Carthage/Build/Mac/Regex.framework; sourceTree = "<group>"; };
-		A14315BB1CDE2C8A00C279FD /* Cartfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Cartfile.swift; path = RomeBuild/Carthage/Cartfile.swift; sourceTree = SOURCE_ROOT; };
-		A14315BC1CDE2C8A00C279FD /* Carthage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Carthage.swift; path = RomeBuild/Carthage/Carthage.swift; sourceTree = SOURCE_ROOT; };
+		A14315BB1CDE2C8A00C279FD /* Cartfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cartfile.swift; sourceTree = "<group>"; };
+		A14315BC1CDE2C8A00C279FD /* Carthage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Carthage.swift; sourceTree = "<group>"; };
 		A14315BF1CDE33F800C279FD /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Environment.swift; path = Utilities/Environment.swift; sourceTree = "<group>"; };
 		A14315C21CDE449E00C279FD /* Unzip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Unzip.swift; path = Utilities/Unzip.swift; sourceTree = "<group>"; };
 		A14315C41CDE7E5700C279FD /* UploadCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadCommand.swift; sourceTree = "<group>"; };
@@ -108,7 +108,8 @@
 				A14315911CDBFB9200C279FD /* Info.plist */,
 				A14315971CDBFC3F00C279FD /* main.swift */,
 			);
-			path = RomeBuild;
+			name = RomeBuild;
+			path = Sources/RomeBuild;
 			sourceTree = "<group>";
 		};
 		A14315991CDBFC8400C279FD /* Frameworks */ = {
@@ -142,8 +143,7 @@
 				A14315BB1CDE2C8A00C279FD /* Cartfile.swift */,
 				A14315BC1CDE2C8A00C279FD /* Carthage.swift */,
 			);
-			name = Carthage;
-			path = Utilities;
+			path = Carthage;
 			sourceTree = "<group>";
 		};
 		A14315C11CDE33FD00C279FD /* Utilities */ = {
@@ -186,7 +186,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = 146BC;
 				TargetAttributes = {
 					A14315861CDBFB9200C279FD = {
@@ -255,13 +255,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -301,13 +311,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -326,6 +346,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
@@ -339,12 +360,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
-				INFOPLIST_FILE = RomeBuild/Info.plist;
+				INFOPLIST_FILE = Sources/RomeBuild/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = OneFourSixBC.RomeBuild;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -357,11 +378,11 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
-				INFOPLIST_FILE = RomeBuild/Info.plist;
+				INFOPLIST_FILE = Sources/RomeBuild/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = OneFourSixBC.RomeBuild;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

@@ -12,10 +12,10 @@ struct Helpers {
 
         do
         {
-            Rome().addAsset(name, revision: revision, path: path)
+            Rome().addAsset(name: name, revision: revision, path: path)
             if removeFile {
-                try FileManager.defaultManager()
-                                 .removeItemAtPath(path)
+                try FileManager.default
+                    .removeItem(atPath: path)
             }
         } catch {
             print(error)

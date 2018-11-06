@@ -29,9 +29,7 @@ struct UploadCommand {
         let buildDir = "Carthage/Build/"
         print("Current dir \(directory)")
 
-        try? NSFileManager.defaultManager().createDirectoryAtPath(buildDir,
-                                                                  withIntermediateDirectories: true,
-                                                                  attributes: nil)
+        try? FileManager.default.createDirectory(atPath: buildDir, withIntermediateDirectories: true, attributes: nil)
 
         if dependenciesToUploadArray.count > 0 {
             for dependency in dependenciesToUploadArray {
@@ -40,15 +38,15 @@ struct UploadCommand {
                 let carthageDepBuildPath = "\(carthageBuildPath)/\(buildDir)"
 
 
-                try? NSFileManager.defaultManager().removeItemAtPath(carthageDepBuildPath)
+                try? FileManager.default.removeItem(atPath: carthageDepBuildPath)
 
-                try? NSFileManager.defaultManager().copyItemAtPath(buildDir,
+                try? FileManager.default.copyItem(atPath: buildDir,
                                                                    toPath: carthageDepBuildPath)
 
                 print("Trying to pre archive \(dependency)")
                 var status = Carthage(["archive", "--project-directory", carthageBuildPath])
                 if status.status != 0 {
-                    try? NSFileManager.defaultManager().removeItemAtPath(carthageDepBuildPath)
+                    try? FileManager.default.removeItem(atPath: carthageDepBuildPath)
                     print("Couldn't find framework\nCheckout project dependency \(dependency)")
                     Carthage(["checkout", dependency])
 
@@ -67,7 +65,8 @@ struct UploadCommand {
                     Carthage(buildArchive)
                     status = Carthage(["archive", "--output", directory], path: dependencyPath)
                 }
-                Helpers().uploadAsset(dependency, revision: dependenciesToBuild[dependency]!, filePath: getFrameworkPath(status))
+                
+                Helpers().uploadAsset(name: dependency, revision: dependenciesToBuild[dependency]!, filePath: getFrameworkPath(taskStatus: status))
             }
         }
         

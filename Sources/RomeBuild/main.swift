@@ -60,7 +60,7 @@ do {
         }
     } else if let archiveParameters = archiveUpload.value {
         if archiveParameters.count == 2 {
-            ArchiveCommand().upload(archiveParameters[0], revision: archiveParameters[1], platforms: platform.value)
+            ArchiveCommand().upload(productName: archiveParameters[0], revision: archiveParameters[1], platforms: platform.value)
         } else {
             print("Uploading self requires product name & revision parameters")
         }
