@@ -41,9 +41,9 @@ struct Rome {
 
         var progressBar = ProgressBar(count:100)
         
-        RomeKit.Assets.create(name: name, revision: revision, data: data, queue: queue, progress: { (totalBytesWritten, totalBytesExpectedToWrite) in
-            
-            let currentPercent = Int(Float(totalBytesWritten) / Float(totalBytesExpectedToWrite) * 100)
+        RomeKit.Assets.create(name: name, revision: revision, data: data, queue: queue, progress: { progress in
+
+            let currentPercent = Int(progress.fractionCompleted * 100)
 
             progressBar.setValue(currentPercent)
             
